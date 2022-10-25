@@ -18,7 +18,8 @@ class Calculator {
     }
 
     appendNumber(number) {
-        this.currentOperand = number
+        // Convert number to string so JS does not make calculations immediately instead of displaying the correct output
+        this.currentOperand = this.currentOperand.toString() + number.toString()
     }
 
     chooseOperation(operation) {
