@@ -18,7 +18,7 @@ class Calculator {
     }
 
     appendNumber(number) {
-
+        this.currentOperand = number
     }
 
     chooseOperation(operation) {
@@ -30,7 +30,7 @@ class Calculator {
     }
 
     updateDisplay() {
-
+        this.currentOperandTextElement.innerText = this.currentOperand
     }
 
 }
@@ -45,3 +45,17 @@ const deleteButton = document.querySelector('[data-delete]');
 const allClearButton = document.querySelector('[data-all-clear]');
 const previousOperandTextElement = document.querySelector('[data-previous-operand]');
 const currentOperandTextElement = document.querySelector('[data-current-operand]');
+
+
+// Assign calculator variable with the calculator class and pass in the constructor
+const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement);
+
+// Add event listener to working buttons within the calculator 
+numberButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        // appened the value of the (number) text inside the button
+        calculator.appendNumber(button.innerText)
+        // update the display with each click
+        calculator.updateDisplay()
+    })
+})
