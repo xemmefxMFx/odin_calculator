@@ -46,6 +46,7 @@ body {
     background-color: rgba(22, 21, 21, .75);
     display: flex;
     justify-content: space-around;
+    align-items: flex-end;
     flex-direction: column;
     padding: 15px;
     /*wrap and break words in new line */
