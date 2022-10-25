@@ -18,6 +18,8 @@ class Calculator {
     }
 
     appendNumber(number) {
+        // Return the function if there is already a 'dot' input
+        if (number === '.' && this.currentOperand.includes('.')) return;
         // Convert number to string so JS does not make calculations immediately instead of displaying the correct output
         this.currentOperand = this.currentOperand.toString() + number.toString()
     }
