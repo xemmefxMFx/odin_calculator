@@ -79,7 +79,12 @@ class Calculator {
         // assign the output of operand
         // other functions work in the background and return the new inner text value for display
         this.currentOperandTextElement.innerText = this.currentOperand
-        this.previousOperandTextElement.innerText = this.previousOperand
+
+        // when insert operation display output string of "previous operand and the operation
+        if (this.operation != null ) {
+        this.previousOperandTextElement.innerText = 
+        `${this.previousOperand} ${this.operation}`
+        }
     }
 
 }
