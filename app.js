@@ -40,7 +40,39 @@ class Calculator {
     }
 
     compute() {
+        let computationResult;
+        // convert operand string to float number for computation
 
+        const prevVar = parseFloat(this.previousOperand);
+        const curVar = parseFloat(this.currentOperand);
+
+        // check condition for empty operand input
+        if (isNaN(prevVar) || isNaN(curVar)) return
+
+        // add switch statement for operation of choice
+        switch (this.operation) {
+            case '+':
+                computationResult = prevVar + curVar;
+                break;
+            case '-':
+                computationResult = prevVar - curVar;
+                break;
+            case '*':
+                computationResult = prevVar * curVar;
+                break;
+            case '%':
+                computationResult = prevVar / curVar;
+                break;
+            // default returns invalid because no operation was chosen
+            default:
+                return;
+        }
+
+        // clear the previous operand and operation
+        // only display the result in the position of the current operand
+        this.currentOperand = computationResult;
+        this.previousOperand = '';
+        this.operation = undefined;
     }
 
     updateDisplay() {
@@ -54,7 +86,7 @@ class Calculator {
 
 
 
-
+// Assign variables
 const numberButtons = document.querySelectorAll('[data-number]');
 const operationButtons = document.querySelectorAll('[data-operation]');
 const equalsButton = document.querySelector('[data-equals]');
@@ -84,4 +116,14 @@ operationButtons.forEach(button => {
         // update the display with each click
         calculator.updateDisplay()
     })
+})
+
+equalsButton.addEventListener('click', button => {
+    calculator.compute();
+    calculator.updateDisplay();
+})
+
+allClearButton.addEventListener('click', button => {
+    calculator.clear();
+    calculator.updateDisplay();
 })
