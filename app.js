@@ -1,6 +1,7 @@
 class Calculator {
-    // initializing object within the class
+    // construct a calculator object based on the passing parameters
     constructor(previousOperandTextElement, currentOperandTextElement) {
+        // this refers to the object it is constructing
         this.previousOperandTextElement = previousOperandTextElement;
         this.currentOperandTextElement = currentOperandTextElement;
         // clearing the calculator upon creation
@@ -8,6 +9,7 @@ class Calculator {
     }
 
     clear() {
+        // format the operand as empty strings
         this.currentOperand = ''
         this.previousOperand = ''
         this.operation = undefined
@@ -25,7 +27,16 @@ class Calculator {
     }
 
     chooseOperation(operation) {
-
+        // if there is not current operand input, then return to cancel the function
+        if (this.currentOperand === '') return 
+        // if there is an existing previous operand input, then proceed to compute with current operand input
+        if (this.previousOperand !== '') {
+            this.compute()
+        }
+        // assign operation 
+        this.operation = operation
+        this.previousOperand = this.currentOperand
+        this.currentOperand = ''
     }
 
     compute() {
@@ -33,7 +44,10 @@ class Calculator {
     }
 
     updateDisplay() {
+        // assign the output of operand
+        // other functions work in the background and return the new inner text value for display
         this.currentOperandTextElement.innerText = this.currentOperand
+        this.previousOperandTextElement.innerText = this.previousOperand
     }
 
 }
